@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="entity.user.mapper">
+    <insert id="addUser" parameterType="User">
+        insert into user(username,password,realname,mobile,age) values(#{username},
+            #{password},#{realname},#{mobile},#{age})
+    </insert>
+    <delete id="deleteUser" parameterType="String">
+        delete from user where username=#{username}
+    </delete>
+    <update id="updateUser" parameterType="User">
+        update user set password=#{password},realname=#{realname},mobile=#{mobile},age=#{age} where usename = #{username}
+    </update>
+    <select id="getOneUser" resultType="User">
+        select * from user where username = #{username} and password=#{password}
+    </select>
+    <select id="getUser" parameterType="String"  resultType="User">
+        select * from user where username = #{username}
+    </select>
+    <select id="getALLUser" resultType="User">
+        select * from user order by password
+    </select>
+</mapper>
